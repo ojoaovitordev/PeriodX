@@ -1,0 +1,689 @@
+/* Tema e elementos compartilhados */
+.periodx-home,
+.tela-treino {
+  --fundo: #101214;
+  --card: #191d21;
+  --borda: #353b44;
+  --texto: #f7f8fa;
+  --secundario: #adb6c2;
+  --lima: #caff00;
+  --azul: #1454eb;
+  --azul-claro: #8bbafe;
+  --largura-pagina: 62rem;
+
+  color-scheme: dark;
+  margin: 0;
+  min-width: 0;
+  background: var(--fundo);
+  color: var(--texto);
+  font: 1rem/1.5 system-ui, sans-serif;
+}
+
+.periodx-home *,
+.periodx-home *::before,
+.periodx-home *::after,
+.tela-treino *,
+.tela-treino *::before,
+.tela-treino *::after {
+  box-sizing: border-box;
+}
+
+.periodx-home :focus-visible,
+.tela-treino :focus-visible {
+  outline: 2px solid var(--lima);
+  outline-offset: 3px;
+}
+
+.home-layout,
+.pagina-treino {
+  width: min(100%, var(--largura-pagina));
+  margin-inline: auto;
+  /* Espaço para rolar o conteúdo acima do menu fixo. */
+  padding: 1rem clamp(1rem, 4vw, 2rem)
+    calc(6rem + env(safe-area-inset-bottom, 0px));
+}
+
+/* Cabeçalho */
+.cabecalho {
+  display: flex;
+  align-items: center;
+  min-height: 3.25rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--borda);
+}
+
+.cabecalho .logo {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  color: inherit;
+  font-weight: 900;
+  letter-spacing: .045em;
+  text-decoration: none;
+}
+
+.logo-simbolo,
+.logo-destaque {
+  color: var(--lima);
+}
+
+.logo-simbolo {
+  font-size: 2rem;
+  font-weight: 1000;
+  font-style: italic;
+  line-height: 1;
+}
+
+/* Menu inferior */
+.menu-inferior {
+  position: fixed;
+  inset: auto 0 0;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  width: min(100%, var(--largura-pagina));
+  margin-inline: auto;
+  padding: .25rem .15rem calc(.35rem + env(safe-area-inset-bottom, 0px));
+  border: 1px solid var(--borda);
+  border-bottom: 0;
+  background: #15181c;
+  text-align: center;
+}
+
+.menu-inferior > * {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  min-height: 3.4rem;
+  padding: .1rem;
+  color: var(--secundario);
+  font-size: clamp(.65rem, 2.7vw, .83rem);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.menu-icone {
+  font-size: 1.35rem;
+  line-height: 1.1;
+}
+
+.menu-inferior [aria-current="page"] {
+  color: var(--lima);
+  font-weight: 800;
+}
+
+.menu-inferior [aria-disabled="true"] {
+  color: #929aa4;
+}
+
+/* Página inicial */
+.periodx-home h1,
+.periodx-home h2,
+.periodx-home p,
+.periodx-home dl,
+.periodx-home dd {
+  margin: 0;
+}
+
+.home-conteudo {
+  display: grid;
+  align-items: start;
+  gap: .9rem;
+}
+
+.home-boas-vindas h1 {
+  font-size: clamp(2rem, 6vw, 3rem);
+  line-height: 1.12;
+  letter-spacing: -.04em;
+}
+
+.home-boas-vindas p {
+  margin-top: .35rem;
+}
+
+.home-boas-vindas p,
+.home-secundario,
+.home-aviso {
+  color: var(--secundario);
+}
+
+/* Cards da Home */
+.home-card {
+  min-width: 0;
+  padding: clamp(1rem, 4vw, 1.4rem);
+  border: 1px solid var(--borda);
+  border-radius: 1rem;
+  background: linear-gradient(145deg, #20252a, var(--card) 65%);
+}
+
+.home-card h2 {
+  font-size: 1.08rem;
+  line-height: 1.3;
+}
+
+.home-card .home-secundario {
+  margin-top: .25rem;
+  font-size: .9rem;
+}
+
+.home-treino {
+  background: linear-gradient(135deg, #232b17, #1a2020 63%, var(--card));
+}
+
+.home-rotulo {
+  display: flex;
+  gap: .6rem;
+  align-items: center;
+}
+
+.home-rotulo::before {
+  content: "";
+  width: .25rem;
+  height: 1.05rem;
+  border-radius: 1rem;
+  background: var(--lima);
+}
+
+.home-card .home-treino-nome {
+  margin-top: .45rem;
+  font-size: clamp(1.65rem, 5vw, 2.25rem);
+  font-weight: 800;
+  letter-spacing: -.035em;
+  line-height: 1.12;
+}
+
+.home-acao {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .65rem;
+  margin-top: 1rem;
+  min-height: 3rem;
+  padding: .65rem;
+  border-radius: .75rem;
+  background: var(--azul);
+  color: white;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.home-acao:hover {
+  background: #1b48c0;
+}
+
+/* Resumo da semana */
+.home-semana .home-metricas {
+  display: grid;
+  grid-template-columns: .9fr .85fr 1.3fr;
+  margin-top: .85rem;
+}
+
+.home-metricas div + div {
+  margin-left: .55rem;
+  padding-left: .55rem;
+  border-left: 1px solid var(--borda);
+}
+
+.home-metricas dt {
+  color: var(--secundario);
+  font-size: .78rem;
+}
+
+.home-metricas dd {
+  font-size: clamp(1.14rem, 5vw, 1.55rem);
+  font-weight: 800;
+  letter-spacing: -.045em;
+  line-height: 1.35;
+}
+
+.home-metricas small,
+.home-grafico small {
+  color: var(--secundario);
+  font-size: .72em;
+}
+
+/* Histórico da ficha */
+.home-historico details {
+  margin-top: .8rem;
+  border-top: 1px solid var(--borda);
+  padding-top: .25rem;
+}
+
+.home-historico summary {
+  min-height: 2.75rem;
+  padding-block: .58rem;
+  color: var(--azul-claro);
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.home-series {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.home-series li {
+  display: grid;
+  gap: .1rem;
+  font-size: .86rem;
+  padding-block: .5rem;
+}
+
+.home-series li + li {
+  border-top: 1px solid var(--borda);
+}
+
+.home-series span {
+  color: var(--secundario);
+}
+
+/* Gráfico de evolução */
+.home-evolucao .home-ganho {
+  margin-top: .65rem;
+  color: var(--lima);
+  font-size: 1.12rem;
+  font-weight: 800;
+}
+
+.home-ganho span {
+  color: var(--secundario);
+  font-size: .8rem;
+  font-weight: 500;
+}
+
+.home-grafico {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: end;
+  gap: .35rem;
+  padding: 0;
+  margin: .65rem 0 0;
+  list-style: none;
+}
+
+.home-grafico li {
+  display: grid;
+  justify-items: center;
+  gap: .25rem;
+  font-size: .8rem;
+}
+
+.home-grafico time,
+.home-aviso {
+  color: var(--secundario);
+  font-size: .75rem;
+}
+
+.home-barra {
+  width: min(100%, 2.2rem);
+  border-radius: .35rem .35rem 0 0;
+  background: #487bea;
+}
+
+.home-barra-55 {
+  height: 55px;
+}
+
+.home-barra-575 {
+  height: 57.5px;
+}
+
+.home-barra-60 {
+  height: 60px;
+}
+
+.home-barra-625 {
+  height: 62.5px;
+  background: var(--lima);
+}
+
+/* Treino do dia */
+.tela-treino .treino-do-dia {
+  max-width: 36rem;
+  margin-inline: auto;
+  padding: clamp(1.1rem, 5vw, 2rem);
+  border: 1px solid var(--borda);
+  border-radius: 1rem;
+  background: var(--card);
+}
+
+.tela-treino .treino-do-dia h1 {
+  margin: 0;
+  color: var(--secundario);
+  font-size: 1rem;
+}
+
+.tela-treino .nome-treino {
+  margin: .35rem 0 0;
+  font-size: clamp(1.65rem, 5vw, 2.25rem);
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.tela-treino .treino-aviso {
+  margin: .35rem 0 0;
+  color: var(--secundario);
+  font-size: .8rem;
+}
+
+.tela-treino .treino-do-dia h2 {
+  margin: 1.25rem 0 .35rem;
+  font-size: 1rem;
+}
+
+.tela-treino .lista-exercicios {
+  margin: 0;
+  padding-inline-start: 1.75rem;
+  list-style: decimal;
+}
+
+.tela-treino .lista-exercicios > li {
+  position: relative;
+  padding: .7rem 1.75rem .7rem .2rem;
+}
+
+.tela-treino .lista-exercicios > li + li {
+  border-top: 1px solid var(--borda);
+}
+
+.tela-treino .lista-exercicios > li::marker {
+  color: var(--secundario);
+  font-weight: 700;
+}
+
+.tela-treino .lista-exercicios > li > span[aria-hidden="true"] {
+  position: absolute;
+  inset-block-start: .7rem;
+  inset-inline-end: .25rem;
+  color: var(--secundario);
+}
+
+/* Ações da ficha */
+.tela-treino .treino-acoes {
+  display: grid;
+  gap: .5rem;
+  margin-top: .85rem;
+}
+
+.tela-treino .link-historico,
+.tela-treino .botao-iniciar {
+  min-height: 2.75rem;
+  border: 0;
+  font: inherit;
+  font-weight: 700;
+}
+
+.tela-treino .link-historico {
+  padding: .35rem 0;
+  background: transparent;
+  color: var(--secundario);
+  text-align: start;
+}
+
+.tela-treino .botao-iniciar {
+  width: 100%;
+  padding: .7rem 1rem;
+  border-radius: .75rem;
+  background: var(--azul);
+  color: #fff;
+}
+
+.tela-treino .botao-iniciar:disabled {
+  background: #293f6b;
+  color: #d7dfef;
+}
+
+/* A prévia abre pelo link #treino-em-andamento. */
+.sessao-treino {
+  display: none;
+  max-width: 40rem;
+  margin-inline: auto;
+}
+
+.sessao-treino:target {
+  display: grid;
+  gap: clamp(1.4rem, 4vw, 2rem);
+}
+
+.sessao-treino:target + .treino-do-dia {
+  display: none;
+}
+
+.tela-treino .link-previa,
+.sessao-treino .voltar-ficha {
+  color: var(--azul-claro);
+  text-underline-offset: .2em;
+  font-size: .9rem;
+}
+
+.sessao-treino :is(h1, h2, p) {
+  margin: 0;
+}
+
+.sessao-topo {
+  display: grid;
+  justify-items: start;
+  gap: .65rem;
+}
+
+.sessao-topo h1 {
+  font-size: clamp(1.8rem, 6vw, 2.65rem);
+  line-height: 1.1;
+  letter-spacing: -.035em;
+}
+
+.sessao-ficha {
+  font-weight: 700;
+}
+
+.sessao-treino .texto-auxiliar {
+  color: var(--secundario);
+  font-size: .85rem;
+}
+
+.sessao-treino .sessao-tempo-total {
+  margin-top: .25rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.sessao-tempo-total time {
+  margin-inline-start: .35rem;
+  color: var(--lima);
+  font-weight: 800;
+}
+
+/* Controles e cards do treino em andamento */
+.sessao-treino button {
+  min-height: 2.75rem;
+  padding: .65rem .9rem;
+  border: 1px solid var(--borda);
+  border-radius: .75rem;
+  background: transparent;
+  color: var(--secundario);
+  font: inherit;
+  font-size: .875rem;
+  font-weight: 650;
+}
+
+.sessao-treino button:disabled {
+  cursor: default;
+}
+
+.sessao-treino .escolher-exercicio {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: .4rem .75rem;
+  padding: .75rem 1rem;
+  text-align: left;
+}
+
+.escolher-exercicio .posicao-exercicio {
+  font-weight: 500;
+}
+
+.sessao-card {
+  min-width: 0;
+  padding: clamp(1.1rem, 5vw, 2rem);
+  border: 1px solid var(--borda);
+  border-radius: 1rem;
+  background: var(--card);
+}
+
+.sessao-card > header {
+  display: grid;
+  gap: .35rem;
+  margin-bottom: 1.25rem;
+}
+
+.sessao-card h2 {
+  font-size: clamp(1.2rem, 4vw, 1.5rem);
+  line-height: 1.2;
+}
+
+/* Tabela de séries com rolagem própria em telas estreitas */
+.series-rolagem {
+  overflow-x: auto;
+  scrollbar-color: var(--borda) transparent;
+}
+
+.tabela-series {
+  width: 100%;
+  min-width: 17rem;
+  border-collapse: collapse;
+  font-size: .85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.tabela-series :is(th, td) {
+  padding: .7rem .2rem;
+  border-bottom: 1px solid var(--borda);
+  text-align: center;
+}
+
+.tabela-series thead th {
+  color: var(--secundario);
+  font-size: .75rem;
+  line-height: 1.25;
+}
+
+.tabela-series td:nth-child(2) {
+  color: var(--secundario);
+  white-space: nowrap;
+}
+
+.tabela-series input[readonly] {
+  width: 5.5ch;
+  min-height: 2.25rem;
+  padding: .15rem;
+  border: 1px solid var(--borda);
+  border-radius: .45rem;
+  background: var(--fundo);
+  color: var(--texto);
+  font: inherit;
+  text-align: center;
+}
+
+.status-serie {
+  display: inline-grid;
+  place-items: center;
+  width: 1.65rem;
+  height: 1.65rem;
+  border: 1px solid var(--borda);
+  border-radius: .45rem;
+  font-weight: 800;
+}
+
+.status-serie.concluida {
+  border-color: transparent;
+  background: #27351c;
+  color: var(--lima);
+}
+
+.serie-selecionada {
+  background: #20252a;
+}
+
+.sessao-treino .acoes-series {
+  display: grid;
+  justify-items: start;
+  gap: .75rem;
+  margin-top: 1.25rem;
+}
+
+.acoes-serie-selecionada {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .5rem;
+}
+
+/* Descanso e volume */
+.descanso-conteudo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.valor-descanso,
+.volume-acumulado strong {
+  font-size: clamp(2rem, 8vw, 2.75rem);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  letter-spacing: -.035em;
+}
+
+.volume-acumulado span {
+  margin-inline-start: .2rem;
+  color: var(--secundario);
+}
+
+/* Ações finais, acima do menu inferior */
+.sessao-rodape {
+  display: grid;
+  gap: .75rem;
+}
+
+.sessao-rodape .proximo-exercicio {
+  border-color: #293f6b;
+  background: #293f6b;
+  color: #d7dfef;
+}
+
+@media (min-width: 40rem) {
+  .sessao-rodape {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 44rem) {
+  .home-conteudo {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .home-boas-vindas,
+  .home-aviso {
+    grid-column: 1 / -1;
+  }
+
+  .home-treino,
+  .home-semana {
+    align-self: stretch;
+  }
+
+  .home-semana {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .menu-inferior {
+    border-radius: 1rem 1rem 0 0;
+  }
+}

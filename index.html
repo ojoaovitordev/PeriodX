@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101214">
+  <title>PeriodX | Início</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="periodx-home">
+  <div class="home-layout">
+    <header class="cabecalho">
+      <a class="logo" href="index.html" aria-label="PeriodX, início">
+        <span class="logo-simbolo" aria-hidden="true">X</span>
+        <span>PERIOD<span class="logo-destaque">X</span></span>
+      </a>
+    </header>
+
+    <main class="home-conteudo">
+      <div class="home-boas-vindas">
+        <h1>Olá, João!</h1>
+        <p>Veja seu treino de hoje e como suas cargas evoluíram.</p>
+      </div>
+
+      <!-- Treino do dia -->
+      <section class="home-card home-treino" aria-labelledby="treino-do-dia">
+        <h2 class="home-rotulo" id="treino-do-dia">Treino do dia</h2>
+        <p class="home-treino-nome">Costas e Bíceps</p>
+        <p class="home-secundario">7 exercícios</p>
+        <a class="home-acao" href="treino.html">
+          <span aria-hidden="true">→</span> Ver treino do dia
+        </a>
+      </section>
+
+      <!-- Totais da semana -->
+      <section class="home-card home-semana" aria-labelledby="resumo-semana">
+        <h2 id="resumo-semana">Resumo da semana</h2>
+        <dl class="home-metricas">
+          <div>
+            <dt>Treinos</dt>
+            <dd>3</dd>
+          </div>
+          <div>
+            <dt>Séries</dt>
+            <dd>42</dd>
+          </div>
+          <div>
+            <dt>Volume</dt>
+            <dd>9.480 <small>kg</small></dd>
+          </div>
+        </dl>
+      </section>
+
+      <!-- Última sessão da mesma ficha -->
+      <section class="home-card home-historico" aria-labelledby="titulo-historico">
+        <h2 id="titulo-historico">Último treino de Costas e Bíceps</h2>
+        <p class="home-secundario">
+          <time datetime="2026-11-18">18 de novembro</time> · 48 min
+        </p>
+        <details>
+          <summary>Ver cargas da sessão</summary>
+          <ul class="home-series">
+            <li><strong>Puxada alta</strong><span>62,5 kg × 10, 9 e 8</span></li>
+            <li><strong>Remada cavalinho máquina</strong><span>45 kg × 12, 10 e 10</span></li>
+            <li><strong>Remada máquina unilateral</strong><span>25 kg × 12, 12 e 10</span></li>
+            <li><strong>Puxada frente triângulo</strong><span>45 kg × 12, 10 e 9</span></li>
+            <li><strong>Crucifixo invertido máquina</strong><span>25 kg × 15, 12 e 12</span></li>
+            <li><strong>Rosca direta com halter</strong><span>12 kg × 12 e 10</span></li>
+            <li><strong>Rosca martelo na polia</strong><span>20 kg × 12 e 10</span></li>
+          </ul>
+        </details>
+      </section>
+
+      <!-- Evolução da maior carga por sessão -->
+      <section class="home-card home-evolucao" aria-labelledby="titulo-evolucao">
+        <h2 id="titulo-evolucao">Evolução de carga</h2>
+        <p class="home-secundario">Puxada alta · Últimas 4 sessões</p>
+        <p class="home-ganho">+7,5 kg <span>desde a primeira sessão</span></p>
+
+        <ol class="home-grafico" aria-label="Maior carga por sessão, em quilogramas">
+          <li>
+            <strong>55 <small>kg</small></strong>
+            <span class="home-barra home-barra-55" aria-hidden="true"></span>
+            <time datetime="2026-10-28">28/10</time>
+          </li>
+          <li>
+            <strong>57,5 <small>kg</small></strong>
+            <span class="home-barra home-barra-575" aria-hidden="true"></span>
+            <time datetime="2026-11-04">04/11</time>
+          </li>
+          <li>
+            <strong>60 <small>kg</small></strong>
+            <span class="home-barra home-barra-60" aria-hidden="true"></span>
+            <time datetime="2026-11-11">11/11</time>
+          </li>
+          <li>
+            <strong>62,5 <small>kg</small></strong>
+            <span class="home-barra home-barra-625" aria-hidden="true"></span>
+            <time datetime="2026-11-18">18/11</time>
+          </li>
+        </ol>
+      </section>
+
+      <p class="home-aviso">Dados de exemplo</p>
+    </main>
+  </div>
+
+  <nav class="menu-inferior" aria-label="Navegação principal">
+    <a href="index.html" aria-current="page">
+      <span class="menu-icone" aria-hidden="true">⌂</span>
+      Início
+    </a>
+    <a href="treino.html">
+      <span class="menu-icone" aria-hidden="true">⇆</span>
+      Treino
+    </a>
+    <span role="link" aria-disabled="true">
+      <span class="menu-icone" aria-hidden="true">↗</span>
+      Progressão
+    </span>
+    <span role="link" aria-disabled="true">
+      <span class="menu-icone" aria-hidden="true">▦</span>
+      Periodização
+    </span>
+  </nav>
+</body>
+</html>

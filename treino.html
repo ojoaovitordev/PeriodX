@@ -6,8 +6,7 @@
   <meta name="theme-color" content="#101214">
   <title>PeriodX | Treino</title>
   <link rel="stylesheet" href="style.css">
-
-  
+  <script src="treino.js" defer></script>
 </head>
 
 <body class="tela-treino">
@@ -19,179 +18,217 @@
       </a>
     </header>
 
-    <main>
-      <!-- Prévia da sessão -->
-      <section class="sessao-treino" id="treino-em-andamento"
-               aria-labelledby="titulo-sessao" tabindex="-1">
-        <header class="sessao-topo">
-          <a class="voltar-ficha" href="#treino-do-dia">← Voltar à ficha</a>
-          <h1 id="titulo-sessao">Treino em andamento</h1>
-          <p class="sessao-ficha">Costas e Bíceps</p>
-          <p class="texto-auxiliar sessao-tempo-total">
-            Tempo total <time datetime="PT12M48S">12:48</time>
-          </p>
-          <p class="texto-auxiliar">
-            Prévia com dados de exemplo. Controles disponíveis em breve.
-          </p>
-        </header>
+    <main class="conteudo-treino">
+      <!-- Ficha do dia. O JavaScript usa esta lista para definir a ordem. -->
+      <section class="treino-card treino-do-dia" id="treino-do-dia"
+               aria-labelledby="titulo-treino-dia">
+        <h1 id="titulo-treino-dia" tabindex="-1">Treino do dia</h1>
+        <p class="nome-treino">Costas e Bíceps</p>
 
-        <button class="escolher-exercicio" type="button" disabled>
-          <span>Escolher exercício</span>
-          <span class="posicao-exercicio">1 de 7</span>
+        <details class="ficha-exercicios">
+          <summary>Exercícios da ficha (7)</summary>
+          <ol class="lista-exercicios">
+            <li>
+              <span class="nome-exercicio">Puxada alta</span>
+              <span aria-hidden="true">⠿</span>
+            </li>
+            <li>
+              <span class="nome-exercicio">Remada cavalinho máquina</span>
+              <span aria-hidden="true">⠿</span>
+            </li>
+            <li>
+              <span class="nome-exercicio">Remada máquina unilateral</span>
+              <span aria-hidden="true">⠿</span>
+            </li>
+            <li>
+              <span class="nome-exercicio">Puxada frente triângulo</span>
+              <span aria-hidden="true">⠿</span>
+            </li>
+            <li>
+              <span class="nome-exercicio">Crucifixo invertido máquina</span>
+              <span aria-hidden="true">⠿</span>
+            </li>
+            <li>
+              <span class="nome-exercicio">Rosca direta com halter</span>
+              <span aria-hidden="true">⠿</span>
+            </li>
+            <li>
+              <span class="nome-exercicio">Rosca martelo na polia</span>
+              <span aria-hidden="true">⠿</span>
+            </li>
+          </ol>
+        </details>
+
+        <button class="link-historico" type="button" disabled
+                aria-describedby="aviso-historico">
+          Último treino de Costas e Bíceps
         </button>
+        <p class="treino-aviso" id="aviso-historico">
+          Histórico da última sessão desta ficha disponível em breve.
+        </p>
+      </section>
 
-        <!-- Exercício atual e comparação com a sessão anterior -->
-        <section class="sessao-card" aria-labelledby="titulo-exercicio">
-          <header>
-            <h2 id="titulo-exercicio">Puxada alta</h2>
-            <p class="texto-auxiliar" id="referencia-series">
-              Última sessão da ficha Costas e Bíceps
+      <section class="treino-card" aria-labelledby="titulo-disponiveis">
+        <h2 id="titulo-disponiveis">Treinos disponíveis</h2>
+        <p class="treino-aviso">Fichas de exemplo</p>
+        <ul class="fichas-exemplo">
+          <li>Costas e Bíceps <span>Treino do dia</span></li>
+          <li>Peito e Tríceps</li>
+          <li>Pernas</li>
+        </ul>
+      </section>
+
+      <section class="treino-card" aria-labelledby="titulo-personalizacao">
+        <h2 id="titulo-personalizacao">Personalização</h2>
+        <button class="treino-controle personalizar-treino" type="button"
+                disabled aria-describedby="aviso-personalizacao">
+          Personalizar treino
+        </button>
+        <p class="treino-aviso" id="aviso-personalizacao">Disponível em breve.</p>
+      </section>
+
+      <!-- O script habilita o botão quando a ficha estiver pronta. -->
+      <button class="treino-controle botao-iniciar" id="iniciar-treino"
+              type="button" aria-controls="area-sessao" disabled>
+        Iniciar treino do dia
+      </button>
+
+      <!-- O contêiner controla a visibilidade sem interferir no grid da sessão. -->
+      <div id="area-sessao" hidden>
+        <section class="sessao-treino" aria-labelledby="titulo-sessao">
+          <header class="sessao-topo">
+            <h2 id="titulo-sessao" tabindex="-1">Treino em andamento</h2>
+            <p class="sessao-ficha">Costas e Bíceps</p>
+            <p class="sessao-tempo-total">
+              Tempo total <span aria-label="Indisponível">—</span>
             </p>
           </header>
 
-          <div class="series-rolagem" role="region"
-               aria-label="Tabela de séries da puxada alta" tabindex="0">
-            <table class="tabela-series" aria-describedby="referencia-series">
-              <thead>
-                <tr>
-                  <th scope="col">Série</th>
-                  <th scope="col">Última sessão</th>
-                  <th scope="col">Hoje (kg)</th>
-                  <th scope="col">Reps</th>
-                  <th scope="col">Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>62,5 kg × 10</td>
-                  <td>
-                    <input type="text" inputmode="decimal" value="62,5" readonly
-                           aria-label="Carga em kg da série 1">
-                  </td>
-                  <td>
-                    <input type="text" inputmode="numeric" value="10" readonly
-                           aria-label="Repetições da série 1">
-                  </td>
-                  <td>
-                    <span class="status-serie concluida" role="img"
-                          aria-label="Concluída">✓</span>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>62,5 kg × 9</td>
-                  <td>
-                    <input type="text" inputmode="decimal" value="62,5" readonly
-                           aria-label="Carga em kg da série 2">
-                  </td>
-                  <td>
-                    <input type="text" inputmode="numeric" value="9" readonly
-                           aria-label="Repetições da série 2">
-                  </td>
-                  <td>
-                    <span class="status-serie concluida" role="img"
-                          aria-label="Concluída">✓</span>
-                  </td>
-                </tr>
-                <tr class="serie-selecionada">
-                  <th scope="row">3</th>
-                  <td>62,5 kg × 8</td>
-                  <td>
-                    <input type="text" inputmode="decimal" value="62,5" readonly
-                           aria-label="Carga em kg da série 3">
-                  </td>
-                  <td>
-                    <input type="text" inputmode="numeric" value="" placeholder="—"
-                           readonly aria-label="Repetições da série 3">
-                  </td>
-                  <td>
-                    <span class="status-serie" role="img"
-                          aria-label="Pendente">—</span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <button class="treino-controle escolher-exercicio" type="button" disabled>
+            <span>Escolher exercício</span>
+            <span class="posicao-exercicio" id="posicao-exercicio">1 de 7</span>
+          </button>
 
-          <div class="acoes-series">
-            <div class="acoes-serie-selecionada" role="group"
-                 aria-labelledby="titulo-acoes-serie">
-              <p class="texto-auxiliar" id="titulo-acoes-serie">Série 3</p>
-              <button type="button" disabled>Editar série</button>
-              <button type="button" disabled>Duplicar série</button>
+          <section class="treino-card sessao-card" aria-labelledby="titulo-exercicio">
+            <header>
+              <h3 id="titulo-exercicio" tabindex="-1"
+                  aria-describedby="posicao-exercicio">Puxada alta</h3>
+            </header>
+
+            <!-- A tabela ilustrativa pertence apenas à Puxada alta. -->
+            <div id="exemplo-series">
+              <p class="treino-aviso" id="aviso-exemplo">
+                Dados fictícios de Puxada alta, exibidos apenas como exemplo.
+              </p>
+
+              <div class="series-rolagem" role="region"
+                   aria-label="Tabela de exemplo da Puxada alta" tabindex="0">
+                <table class="tabela-series" aria-describedby="aviso-exemplo">
+                  <thead>
+                    <tr>
+                      <th scope="col">Série</th>
+                      <th scope="col">Sessão anterior (exemplo)</th>
+                      <th scope="col">Hoje (kg)</th>
+                      <th scope="col">Reps</th>
+                      <th scope="col">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>62,5 kg × 10</td>
+                      <td>
+                        <input type="text" value="62,5" readonly
+                               aria-label="Carga de exemplo da série 1, em kg">
+                      </td>
+                      <td>
+                        <input type="text" value="10" readonly
+                               aria-label="Repetições de exemplo da série 1">
+                      </td>
+                      <td>
+                        <span class="status-serie concluida" role="img"
+                              aria-label="Concluída no exemplo">✓</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">2</th>
+                      <td>62,5 kg × 9</td>
+                      <td>
+                        <input type="text" value="62,5" readonly
+                               aria-label="Carga de exemplo da série 2, em kg">
+                      </td>
+                      <td>
+                        <input type="text" value="9" readonly
+                               aria-label="Repetições de exemplo da série 2">
+                      </td>
+                      <td>
+                        <span class="status-serie concluida" role="img"
+                              aria-label="Concluída no exemplo">✓</span>
+                      </td>
+                    </tr>
+                    <tr class="serie-selecionada">
+                      <th scope="row">3</th>
+                      <td>62,5 kg × 8</td>
+                      <td>
+                        <input type="text" value="62,5" readonly
+                               aria-label="Carga de exemplo da série 3, em kg">
+                      </td>
+                      <td>
+                        <input type="text" placeholder="—" readonly
+                               aria-label="Repetições de exemplo da série 3">
+                      </td>
+                      <td>
+                        <span class="status-serie" role="img"
+                              aria-label="Pendente no exemplo">—</span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="acoes-series">
+                <div class="acoes-serie-selecionada" role="group"
+                     aria-labelledby="titulo-acoes-serie">
+                  <p class="treino-aviso" id="titulo-acoes-serie">Série 3</p>
+                  <button class="treino-controle" type="button" disabled>Editar série</button>
+                  <button class="treino-controle" type="button" disabled>Duplicar série</button>
+                </div>
+                <button class="treino-controle" type="button" disabled>+ Adicionar série</button>
+              </div>
             </div>
-            <button type="button" disabled>+ Adicionar série</button>
-          </div>
+
+            <p class="treino-aviso" id="aviso-sem-series" hidden>
+              Séries e histórico indisponíveis para este exercício nesta etapa.
+            </p>
+          </section>
+
+          <section class="treino-card sessao-card" aria-labelledby="titulo-descanso">
+            <header>
+              <h3 id="titulo-descanso">Descanso</h3>
+            </header>
+            <div class="descanso-conteudo">
+              <span class="valor-descanso" aria-label="Indisponível">—</span>
+              <button class="treino-controle" type="button" disabled>Pausar descanso</button>
+            </div>
+          </section>
+
+          <section class="treino-card sessao-card" aria-labelledby="titulo-volume">
+            <header>
+              <h3 id="titulo-volume">Volume do treino</h3>
+            </header>
+            <p class="volume-acumulado"><strong>—</strong> <span>kg</span></p>
+          </section>
+
+          <footer class="sessao-rodape">
+            <button class="treino-controle proximo-exercicio" id="proximo-exercicio"
+                    type="button" disabled>
+              Próximo exercício
+            </button>
+            <button class="treino-controle" type="button" disabled>Finalizar treino</button>
+            <button class="treino-controle" id="voltar-ficha" type="button">Voltar à ficha</button>
+          </footer>
         </section>
-
-        <!-- Intervalo entre séries -->
-        <section class="sessao-card" aria-labelledby="titulo-descanso">
-          <header>
-            <h2 id="titulo-descanso">Descanso</h2>
-          </header>
-
-          <div class="descanso-conteudo">
-            <time class="valor-descanso" datetime="PT1M15S"
-                  aria-label="1 minuto e 15 segundos">01:15</time>
-            <button type="button" disabled>Pausar descanso</button>
-          </div>
-        </section>
-
-        <!-- Volume das séries concluídas no exemplo -->
-        <section class="sessao-card" aria-labelledby="titulo-volume">
-          <header>
-            <h2 id="titulo-volume">Volume do treino</h2>
-          </header>
-
-          <p class="volume-acumulado"><strong>1.187,5</strong> <span>kg</span></p>
-        </section>
-
-        <footer class="sessao-rodape">
-          <button class="proximo-exercicio" type="button" disabled>
-            Próximo exercício
-          </button>
-          <button type="button" disabled>Finalizar treino</button>
-        </footer>
-      </section>
-
-      <!-- Ficha exibida ao entrar na aba Treino -->
-      <section class="card treino-do-dia" id="treino-do-dia"
-               aria-labelledby="titulo-treino-dia" tabindex="-1">
-        <header>
-          <h1 id="titulo-treino-dia">Treino do dia</h1>
-          <p class="nome-treino">Costas e Bíceps</p>
-          <p class="treino-aviso">Ficha de exemplo</p>
-        </header>
-
-        <h2>Exercícios da ficha</h2>
-        <ol class="lista-exercicios">
-          <li><span aria-hidden="true">⠿</span> Puxada alta</li>
-          <li><span aria-hidden="true">⠿</span> Remada cavalinho máquina</li>
-          <li><span aria-hidden="true">⠿</span> Remada máquina unilateral</li>
-          <li><span aria-hidden="true">⠿</span> Puxada frente triângulo</li>
-          <li><span aria-hidden="true">⠿</span> Crucifixo invertido máquina</li>
-          <li><span aria-hidden="true">⠿</span> Rosca direta com halter</li>
-          <li><span aria-hidden="true">⠿</span> Rosca martelo na polia</li>
-        </ol>
-
-        <div class="treino-acoes">
-          <button class="link-historico" type="button" disabled
-                  aria-describedby="aviso-acoes-treino">
-            Último treino de Costas e Bíceps
-          </button>
-          <button class="botao-iniciar" type="button" disabled
-                  aria-describedby="aviso-acoes-treino">
-            Iniciar treino
-          </button>
-          <p class="treino-aviso" id="aviso-acoes-treino">
-            Histórico da ficha e início do treino disponíveis em breve.
-          </p>
-          <a class="link-previa" href="#treino-em-andamento">
-            Ver prévia do treino em andamento
-          </a>
-        </div>
-      </section>
+      </div>
     </main>
   </div>
 

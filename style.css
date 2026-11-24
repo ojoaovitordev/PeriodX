@@ -38,7 +38,7 @@
 .pagina-treino {
   width: min(100%, var(--largura-pagina));
   margin-inline: auto;
-  /* Espaço para rolar o conteúdo acima do menu fixo. */
+  /* Reserva espaço para rolar o conteúdo acima do menu fixo. */
   padding: 1rem clamp(1rem, 4vw, 2rem)
     calc(6rem + env(safe-area-inset-bottom, 0px));
 }
@@ -74,7 +74,7 @@
   line-height: 1;
 }
 
-/* Menu inferior */
+/* Menu inferior compartilhado */
 .menu-inferior {
   position: fixed;
   inset: auto 0 0;
@@ -147,7 +147,7 @@
   color: var(--secundario);
 }
 
-/* Cards da Home */
+/* Cards e ação do treino do dia na Home */
 .home-card {
   min-width: 0;
   padding: clamp(1rem, 4vw, 1.4rem);
@@ -242,7 +242,7 @@
   font-size: .72em;
 }
 
-/* Histórico da ficha */
+/* Histórico da ficha na Home */
 .home-historico details {
   margin-top: .8rem;
   border-top: 1px solid var(--borda);
@@ -321,6 +321,7 @@
   background: #487bea;
 }
 
+/* Alturas proporcionais à carga, a partir de zero. */
 .home-barra-55 {
   height: 55px;
 }
@@ -338,138 +339,182 @@
   background: var(--lima);
 }
 
-/* Treino do dia */
-.tela-treino .treino-do-dia {
+/* Página Treino */
+.conteudo-treino {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(1.25rem, 4vw, 1.75rem);
   max-width: 36rem;
   margin-inline: auto;
-  padding: clamp(1.1rem, 5vw, 2rem);
+}
+
+.treino-card {
+  min-width: 0;
+  padding: clamp(1.125rem, 5vw, 2rem);
   border: 1px solid var(--borda);
   border-radius: 1rem;
   background: var(--card);
 }
 
-.tela-treino .treino-do-dia h1 {
+.treino-card :is(h1, h2, h3, p) {
   margin: 0;
+}
+
+.treino-card :is(h2, h3) {
+  font-size: clamp(1.15rem, 4vw, 1.4rem);
+  line-height: 1.25;
+}
+
+.treino-do-dia h1 {
   color: var(--secundario);
   font-size: 1rem;
 }
 
-.tela-treino .nome-treino {
-  margin: .35rem 0 0;
+.treino-do-dia .nome-treino {
+  margin-top: .4rem;
   font-size: clamp(1.65rem, 5vw, 2.25rem);
   font-weight: 800;
   line-height: 1.15;
 }
 
-.tela-treino .treino-aviso {
-  margin: .35rem 0 0;
+.treino-aviso {
   color: var(--secundario);
-  font-size: .8rem;
+  font-size: .85rem;
 }
 
-.tela-treino .treino-do-dia h2 {
-  margin: 1.25rem 0 .35rem;
-  font-size: 1rem;
+.treino-card .treino-aviso {
+  margin-top: .45rem;
 }
 
-.tela-treino .lista-exercicios {
+/* Ficha expansível */
+.ficha-exercicios {
+  margin: 1.25rem 0 .75rem;
+  border-block: 1px solid var(--borda);
+}
+
+.ficha-exercicios summary {
+  padding-block: .85rem;
+  color: var(--azul-claro);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.lista-exercicios {
+  list-style: decimal outside;
   margin: 0;
   padding-inline-start: 1.75rem;
-  list-style: decimal;
+  padding-block-end: .5rem;
 }
 
-.tela-treino .lista-exercicios > li {
+.lista-exercicios > li {
   position: relative;
-  padding: .7rem 1.75rem .7rem .2rem;
+  padding: .75rem 1.75rem .75rem .25rem;
 }
 
-.tela-treino .lista-exercicios > li + li {
+.lista-exercicios > li + li {
   border-top: 1px solid var(--borda);
 }
 
-.tela-treino .lista-exercicios > li::marker {
+.lista-exercicios > li::marker {
   color: var(--secundario);
   font-weight: 700;
 }
 
-.tela-treino .lista-exercicios > li > span[aria-hidden="true"] {
+.lista-exercicios > li > span[aria-hidden="true"] {
   position: absolute;
-  inset-block-start: .7rem;
+  inset-block-start: .75rem;
   inset-inline-end: .25rem;
   color: var(--secundario);
 }
 
-/* Ações da ficha */
-.tela-treino .treino-acoes {
+/* Fichas de exemplo */
+.fichas-exemplo {
   display: grid;
-  gap: .5rem;
-  margin-top: .85rem;
+  gap: .65rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
 }
 
-.tela-treino .link-historico,
-.tela-treino .botao-iniciar {
+.fichas-exemplo > li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: .3rem .75rem;
+  padding: .75rem .9rem;
+  border: 1px solid var(--borda);
+  border-radius: .75rem;
+  background: var(--fundo);
+  font-weight: 650;
+}
+
+.fichas-exemplo > li > span {
+  color: var(--lima);
+  font-size: .8rem;
+  font-weight: 550;
+}
+
+/* Ações exibidas no protótipo */
+.treino-controle,
+.link-historico {
   min-height: 2.75rem;
-  border: 0;
+  padding: .65rem .9rem;
+  border: 1px solid var(--borda);
+  border-radius: .75rem;
+  background: transparent;
+  color: var(--secundario);
   font: inherit;
+  font-size: .875rem;
   font-weight: 700;
 }
 
-.tela-treino .link-historico {
-  padding: .35rem 0;
-  background: transparent;
-  color: var(--secundario);
+.link-historico {
+  padding-inline: 0;
+  border-color: transparent;
   text-align: start;
 }
 
-.tela-treino .botao-iniciar {
-  width: 100%;
-  padding: .7rem 1rem;
-  border-radius: .75rem;
-  background: var(--azul);
-  color: #fff;
+.personalizar-treino {
+  margin-top: 1rem;
 }
 
-.tela-treino .botao-iniciar:disabled {
+.botao-iniciar {
+  width: 100%;
+  min-height: 3rem;
+  background: var(--azul);
+  color: white;
+}
+
+.botao-iniciar:disabled,
+.proximo-exercicio:disabled {
+  border-color: #293f6b;
   background: #293f6b;
   color: #d7dfef;
 }
 
-/* A prévia abre pelo link #treino-em-andamento. */
+/* Treino em andamento na mesma rolagem */
 .sessao-treino {
-  display: none;
-  max-width: 40rem;
-  margin-inline: auto;
-}
-
-.sessao-treino:target {
   display: grid;
-  gap: clamp(1.4rem, 4vw, 2rem);
-}
-
-.sessao-treino:target + .treino-do-dia {
-  display: none;
-}
-
-.tela-treino .link-previa,
-.sessao-treino .voltar-ficha {
-  color: var(--azul-claro);
-  text-underline-offset: .2em;
-  font-size: .9rem;
-}
-
-.sessao-treino :is(h1, h2, p) {
-  margin: 0;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(1.25rem, 4vw, 1.75rem);
+  margin-top: clamp(1rem, 4vw, 2rem);
+  padding-top: clamp(1.5rem, 5vw, 2.5rem);
+  border-top: 1px solid var(--borda);
 }
 
 .sessao-topo {
   display: grid;
-  justify-items: start;
-  gap: .65rem;
+  gap: .55rem;
 }
 
-.sessao-topo h1 {
-  font-size: clamp(1.8rem, 6vw, 2.65rem);
-  line-height: 1.1;
+.sessao-topo :is(h2, p) {
+  margin: 0;
+}
+
+.sessao-topo h2 {
+  font-size: clamp(1.75rem, 6vw, 2.5rem);
+  line-height: 1.12;
   letter-spacing: -.035em;
 }
 
@@ -477,13 +522,8 @@
   font-weight: 700;
 }
 
-.sessao-treino .texto-auxiliar {
+.sessao-tempo-total {
   color: var(--secundario);
-  font-size: .85rem;
-}
-
-.sessao-treino .sessao-tempo-total {
-  margin-top: .25rem;
   font-variant-numeric: tabular-nums;
 }
 
@@ -493,57 +533,23 @@
   font-weight: 800;
 }
 
-/* Controles e cards do treino em andamento */
-.sessao-treino button {
-  min-height: 2.75rem;
-  padding: .65rem .9rem;
-  border: 1px solid var(--borda);
-  border-radius: .75rem;
-  background: transparent;
-  color: var(--secundario);
-  font: inherit;
-  font-size: .875rem;
-  font-weight: 650;
-}
-
-.sessao-treino button:disabled {
-  cursor: default;
-}
-
-.sessao-treino .escolher-exercicio {
+.escolher-exercicio {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: space-between;
-  gap: .4rem .75rem;
-  padding: .75rem 1rem;
-  text-align: left;
+  gap: .35rem .75rem;
+  text-align: start;
 }
 
-.escolher-exercicio .posicao-exercicio {
-  font-weight: 500;
-}
-
-.sessao-card {
-  min-width: 0;
-  padding: clamp(1.1rem, 5vw, 2rem);
-  border: 1px solid var(--borda);
-  border-radius: 1rem;
-  background: var(--card);
+.posicao-exercicio {
+  font-weight: 550;
 }
 
 .sessao-card > header {
-  display: grid;
-  gap: .35rem;
   margin-bottom: 1.25rem;
 }
 
-.sessao-card h2 {
-  font-size: clamp(1.2rem, 4vw, 1.5rem);
-  line-height: 1.2;
-}
-
-/* Tabela de séries com rolagem própria em telas estreitas */
+/* Em telas estreitas, só a tabela pode rolar na horizontal. */
 .series-rolagem {
   overflow-x: auto;
   scrollbar-color: var(--borda) transparent;
@@ -558,7 +564,7 @@
 }
 
 .tabela-series :is(th, td) {
-  padding: .7rem .2rem;
+  padding: .75rem .25rem;
   border-bottom: 1px solid var(--borda);
   text-align: center;
 }
@@ -606,29 +612,31 @@
   background: #20252a;
 }
 
-.sessao-treino .acoes-series {
+.acoes-series {
   display: grid;
   justify-items: start;
   gap: .75rem;
   margin-top: 1.25rem;
 }
 
-.acoes-serie-selecionada {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: .5rem;
-}
-
-/* Descanso e volume */
+.acoes-serie-selecionada,
 .descanso-conteudo {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  gap: .65rem;
+}
+
+.acoes-serie-selecionada .treino-aviso {
+  margin: 0;
+}
+
+.descanso-conteudo {
   justify-content: space-between;
   gap: 1rem;
 }
 
+/* Descanso, volume e botões finais */
 .valor-descanso,
 .volume-acumulado strong {
   font-size: clamp(2rem, 8vw, 2.75rem);
@@ -643,24 +651,18 @@
   color: var(--secundario);
 }
 
-/* Ações finais, acima do menu inferior */
 .sessao-rodape {
   display: grid;
   gap: .75rem;
 }
 
-.sessao-rodape .proximo-exercicio {
-  border-color: #293f6b;
-  background: #293f6b;
-  color: #d7dfef;
-}
-
-@media (min-width: 40rem) {
+@media (min-width: 36rem) {
   .sessao-rodape {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
+/* Ajustes para telas mais largas */
 @media (min-width: 44rem) {
   .home-conteudo {
     grid-template-columns: 1fr 1fr;
